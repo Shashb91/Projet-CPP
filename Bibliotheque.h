@@ -15,14 +15,15 @@ private:
     string adresse;
     static int  code;
     Livre*  liste;
+    int nbrLivres;
 
 public:
-    Bibliotheque(); Bibliotheque(string Nom, string Adresse);
+    Bibliotheque(); Bibliotheque(string Nom, string Adresse);Bibliotheque(string Nom, string Adresse, int NbrLivres);
 
     void afficheLivres(); void afficheLivres(Type cat);
-    void echangeLivre(Bibliotheque biblio, string ISBN);
     void supprimerLivre(int code);
-    void achatLivre(Livre livre);
+    void ajoutLivre(Livre livre);
+    void echangeLivre(Bibliotheque biblio, string ISBN);
 
     string get_nom() const ;
     void set_nom(const string &nom);
