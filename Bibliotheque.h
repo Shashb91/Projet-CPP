@@ -4,14 +4,15 @@
 
 #ifndef PROJET_CPP_BIBLIOTHEQUE_H
 #define PROJET_CPP_BIBLIOTHEQUE_H
+#include "Livre.h"
 
 
 class Bibliotheque {
 private:
-    String : nom;
-    String : adresse;
-    static int : code;
-    Livre* : liste;
+    String nom;
+    String adresse;
+    static int  code;
+    Livre*  liste;
 };
 
 
