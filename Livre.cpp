@@ -3,3 +3,6 @@
 //
 
 #include "Livre.h"
+
+Livre::Livre() {
+}
