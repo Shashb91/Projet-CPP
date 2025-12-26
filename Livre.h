@@ -37,7 +37,7 @@ public:
     Livre();
     Livre(string auteur_, string titre_, string editeur_, string ISBN_, Audience audience_);
 
-    virtual Type getType();
+    virtual Type get_type();
     virtual void affiche();
 
     int get_code();
@@ -50,7 +50,7 @@ public:
 
     string get_audience_string();
     string get_etat_string();
-
+    string get_type_string();
 };
 
 

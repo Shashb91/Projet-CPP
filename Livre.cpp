@@ -16,7 +16,7 @@ Livre::Livre(string auteur_, string titre_, string editeur_, string ISBN_, Audie
     etat = Etat::Libre;
 }
 
-Livre::Type Livre::getType(){
+Livre::Type Livre::get_type(){
     return Type::Null;
 }
 
@@ -77,5 +77,16 @@ string Livre::get_etat_string(){
         case Etat::Libre: return "Libre";break;
         case Etat::Emprunte: return "Emprunté";break;
         case Etat::Pret: return "Prêté";break;
+    }
+}
+
+string Livre::get_type_string(){
+    switch (this->get_type()){
+        case Type :: Null: return "Null";break;
+        case Type::Album: return "Album";break;
+        case Type::BD: return "BD";break;
+        case Type::Recueil: return "Recueil";break;
+        case Type::Roman: return "Roman";break;
+        case Type::Theatre: return "Theatre";break;
     }
 }
