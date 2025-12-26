@@ -1,4 +1,4 @@
-// Code de la classe Livre
+// Code de la classe abstraite Livre
 
 #include "Livre.h"
 
@@ -20,26 +20,43 @@ Livre::Type Livre::get_type(){
     return Type::Null;
 }
 
+string Livre::get_audience_string(){
+    switch (audience){
+    case Audience::Null: return "Null"; break;
+    case Audience::Jeunesse: return "Jeunesse";break;
+    case Audience::Adolescent: return "Adolescent";break;
+    case Audience::Adulte: return "Adulte";break;
+    case Audience::Tout_public: return "Tout_public";break;
+    }
+}
+
+string Livre::get_etat_string(){
+    switch (etat){
+    case Etat::Libre: return "Libre";break;
+    case Etat::Emprunte: return "Emprunté";break;
+    case Etat::Pret: return "Prêté";break;
+    }
+}
+
+string Livre::get_type_string(){
+    switch (this->get_type()){
+    case Type :: Null: return "Null";break;
+    case Type::Album: return "Album";break;
+    case Type::BD: return "BD";break;
+    case Type::Recueil: return "Recueil";break;
+    case Type::Roman: return "Roman";break;
+    case Type::Theatre: return "Theatre";break;
+    }
+}
+
 void Livre:: affiche(){
     cout<<"Livre "<< code;
     cout<<" | Titre : "<< titre;
     cout<<" | Auteur : "<< auteur;
     cout<<" | Editeur : "<< editeur;
     cout<<" | ISBN : "<< ISBN;
-    cout<<" | Audience : ";
-    switch (audience){
-        case Audience::Null: cout<<"Null"; break;
-        case Audience::Jeunesse: cout<<"Jeunesse";break;
-        case Audience::Adolescent: cout<<"Adolescent";break;
-        case Audience::Adulte: cout<<"Adulte";break;
-        case Audience::Tout_public: cout<<"Tout_public";break;
-    }
-    cout<<" | Etat : ";
-    switch (etat){
-        case Etat::Libre: cout<<"Libre"<<endl;break;
-        case Etat::Emprunte: cout<<"Emprunté"<<endl;break;
-        case Etat::Pret: cout<<"Prêté"<<endl;break;
-    }
+    cout<<" | Audience : " << this->get_audience_string();
+    cout<<" | Etat : " << this->get_etat_string()<<endl;
 }
 
 int Livre :: get_code(){return code;}
@@ -62,31 +79,3 @@ void Livre :: set_audience(Audience audience_){audience = audience_;}
 Livre::Etat Livre :: get_etat(){return etat;}
 void Livre :: set_etat(Etat etat_){etat = etat_;}
 
-string Livre::get_audience_string(){
-    switch (audience){
-        case Audience::Null: return "Null"; break;
-        case Audience::Jeunesse: return "Jeunesse";break;
-        case Audience::Adolescent: return "Adolescent";break;
-        case Audience::Adulte: return "Adulte";break;
-        case Audience::Tout_public: return "Tout_public";break;
-    }
-}
-
-string Livre::get_etat_string(){
-    switch (etat){
-        case Etat::Libre: return "Libre";break;
-        case Etat::Emprunte: return "Emprunté";break;
-        case Etat::Pret: return "Prêté";break;
-    }
-}
-
-string Livre::get_type_string(){
-    switch (this->get_type()){
-        case Type :: Null: return "Null";break;
-        case Type::Album: return "Album";break;
-        case Type::BD: return "BD";break;
-        case Type::Recueil: return "Recueil";break;
-        case Type::Roman: return "Roman";break;
-        case Type::Theatre: return "Theatre";break;
-    }
-}
