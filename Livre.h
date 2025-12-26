@@ -47,6 +47,10 @@ public:
     string get_isbn(); void set_isbn(string isbn_);
     Audience get_audience(); void set_audience(Audience audience_);
     Etat get_etat();void set_etat(Etat etat_);
+
+    string get_audience_string();
+    string get_etat_string();
+
 };
 
 

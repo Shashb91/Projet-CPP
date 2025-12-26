@@ -61,3 +61,21 @@ void Livre :: set_audience(Audience audience_){audience = audience_;}
 
 Livre::Etat Livre :: get_etat(){return etat;}
 void Livre :: set_etat(Etat etat_){etat = etat_;}
+
+string Livre::get_audience_string(){
+    switch (audience){
+        case Audience::Null: return "Null"; break;
+        case Audience::Jeunesse: return "Jeunesse";break;
+        case Audience::Adolescent: return "Adolescent";break;
+        case Audience::Adulte: return "Adulte";break;
+        case Audience::Tout_public: return "Tout_public";break;
+    }
+}
+
+string Livre::get_etat_string(){
+    switch (etat){
+        case Etat::Libre: return "Libre";break;
+        case Etat::Emprunte: return "Emprunté";break;
+        case Etat::Pret: return "Prêté";break;
+    }
+}
