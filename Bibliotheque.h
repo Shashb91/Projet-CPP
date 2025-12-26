@@ -20,17 +20,14 @@ private:
 public:
     Bibliotheque(); Bibliotheque(string Nom, string Adresse);Bibliotheque(string Nom, string Adresse, int NbrLivres);
 
-    void afficheLivres(); void afficheLivres(Type cat);
+    void afficheLivres(); void afficheLivres(Livre :: Type cat);
     void supprimerLivre(int code);
     void ajoutLivre(Livre livre);
     void echangeLivre(Bibliotheque biblio, string ISBN);
 
-    string get_nom() const ;
-    void set_nom(const string &nom);
-    string get_adresse() const ;
-    void set_adresse(const string &adresse);
-    Livre* get_liste() const;
-    void set_liste(Livre *liste);
+    string get_nom(); void set_nom(string nom_);
+    string get_adresse(); void set_adresse(string adresse_);
+    Livre* get_liste(); void set_liste(Livre liste_);
 };
 
 

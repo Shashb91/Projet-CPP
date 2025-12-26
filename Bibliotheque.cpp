@@ -29,7 +29,7 @@ void Bibliotheque::afficheLivres() {
     }
 }
 
-void Bibliotheque::afficheLivres(Type cat) {
+void Bibliotheque::afficheLivres(Livre::Type cat) {
     for (int i = 0; i<nbrLivres; i++) {
         if (liste[i].getType() == cat) {
             liste[i].affiche();
@@ -64,11 +64,11 @@ void Bibliotheque::echangeLivre(Bibliotheque biblio, string ISBN) {
     biblio.supprimerLivre(livre.get_code());
 }
 
-string Bibliotheque::get_nom() const {return nom;}
+string Bibliotheque::get_nom() {return nom;}
 void Bibliotheque::set_nom(string nom_) { nom = nom_;}
 
-string Bibliotheque::get_adresse() const {return adresse;}
+string Bibliotheque::get_adresse() {return adresse;}
 void Bibliotheque::set_adresse(string adresse_) {adresse = adresse_;}
 
-Livre * Bibliotheque::get_liste() const {return liste;}
+Livre * Bibliotheque::get_liste() {return liste;}
 void Bibliotheque::set_liste(Livre liste_) {liste = liste_;}

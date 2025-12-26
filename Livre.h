@@ -1,6 +1,4 @@
-//
-// Created by shash on 24/12/2025.
-//
+// Header de la classe abstraite Livre
 
 #ifndef PROJET_CPP_LIVRE_H
 #define PROJET_CPP_LIVRE_H
@@ -40,13 +38,15 @@ public:
     Livre(string auteur_, string titre_, string editeur_, string ISBN_, Audience audience_);
 
     virtual Type getType();
-    void affiche();
+    virtual void affiche();
 
-    int get_code() const;
-    string get_auteur1() const ; void set_auteur(const string &auteur);
-    string get_titre() const; void set_titre(const string &titre);
-    string get_editeur() const; void set_editeur(const string &editeur);
-    string get_isbn() const; void set_isbn(const string &isbn);
+    int get_code();
+    string get_auteur(); void set_auteur(string auteur_);
+    string get_titre(); void set_titre(string titre_);
+    string get_editeur(); void set_editeur(string editeur_);
+    string get_isbn(); void set_isbn(string isbn_);
+    Audience get_audience(); void set_audience(Audience audience_);
+    Etat get_etat();void set_etat(Etat etat_);
 };
 
 
