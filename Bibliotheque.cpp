@@ -54,23 +54,21 @@ void Bibliotheque::ajoutLivre(Livre livre) {
 }
 
 void Bibliotheque::echangeLivre(Bibliotheque biblio, string ISBN) {
-
+    Livre livre;
+    for (int i = 0; i < nbrLivres; i++){
+        if (biblio.liste[i].get_isbn() == ISBN){
+            livre = biblio.liste[i];
+        }
+    }
+    this->ajoutLivre(livre);
+    biblio.supprimerLivre(livre.get_code());
 }
 
-string Bibliotheque::get_nom() const {
-}
+string Bibliotheque::get_nom() const {return nom;}
+void Bibliotheque::set_nom(string nom_) { nom = nom_;}
 
-void Bibliotheque::set_nom(const string &nom) {
-}
+string Bibliotheque::get_adresse() const {return adresse;}
+void Bibliotheque::set_adresse(string adresse_) {adresse = adresse_;}
 
-string Bibliotheque::get_adresse() const {
-}
-
-void Bibliotheque::set_adresse(const string &adresse) {
-}
-
-Livre * Bibliotheque::get_liste() const {
-}
-
-void Bibliotheque::set_liste(Livre *liste) {
-}
+Livre * Bibliotheque::get_liste() const {return liste;}
+void Bibliotheque::set_liste(Livre liste_) {liste = liste_;}

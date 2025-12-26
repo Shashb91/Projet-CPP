@@ -11,18 +11,9 @@ using namespace std;
 
 
 class Livre {
-private:
-    static int code;
-    string auteur;
-    string titre;
-    string editeur;
-    string ISBN;
-    Audience Audience;
-    Etat etat;
-
 public:
     enum class Type {
-        BD,Recueil,Roman,Theatre,Album
+        Null,BD,Recueil,Roman,Theatre,Album
     };
 
     // Book state
@@ -32,14 +23,23 @@ public:
 
     // Target audience
     enum class Audience {
-        Adulte, Adolescent, Jeunesse, Tout_public
+        Null,Adulte, Adolescent, Jeunesse, Tout_public
     };
 
+private:
+    static int code;
+    string auteur;
+    string titre;
+    string editeur;
+    string ISBN;
+    Audience audience;
+    Etat etat;
 
+public:
     Livre();
-    Livre(string auteur, string titre, string editeur, string ISBN, Audience audience);
+    Livre(string auteur_, string titre_, string editeur_, string ISBN_, Audience audience_);
 
-    Type getType();
+    virtual Type getType();
     void affiche();
 
     int get_code() const;
