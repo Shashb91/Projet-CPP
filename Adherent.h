@@ -19,12 +19,20 @@ private:
     Bibliotheque bib;
     Livre* liste;
     int maxEmprunt;
-    int listeEmprunt;
+    int tailleListeEmprunt;
 
 public:
-    Adherent(); Adherent(string nom_, string prenom_, string adresse_, Bibliotheque bib_, int maxEmprunt_);
+    Adherent(string nom_, string prenom_, string adresse_, Bibliotheque bib_, int maxEmprunt_);
 
     void empruntLivre(string ISBN); void retourLivre(string ISBN);
+
+    int get_numAdherent();
+    string get_nom(); void set_nom(string nom_);
+    string get_prenom(); void set_prenom(string prenom_);
+    string get_adresse(); void set_adresse(string adresse);
+    int get_maxEmprunt(); void set_maxEmprunt(int maxEmprunt_);
+    Bibliotheque get_bib(); void set_bib(Bibliotheque bib_);
+    Livre* get_liste(); void set_liste(Livre* liste_);
 };
 
 

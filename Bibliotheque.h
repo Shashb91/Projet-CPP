@@ -25,7 +25,7 @@ public:
 
     string get_nom(); void set_nom(string nom_);
     string get_adresse(); void set_adresse(string adresse_);
-    Livre* get_liste(); void set_liste(Livre liste_);
+    Livre* get_liste(); void set_liste(Livre* liste_);
     int get_nbrLivres();
     int get_code();
 };

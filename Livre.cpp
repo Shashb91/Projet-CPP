@@ -1,11 +1,12 @@
 // Code de la classe abstraite Livre
 
 #include "Livre.h"
+int Livre::code = 0;
 
 Livre::Livre() {
-    code ++; auteur = NULL;
-    titre = NULL; editeur = NULL;
-    ISBN = NULL; audience = Audience::Null;
+    code ++; auteur = "";
+    titre = ""; editeur = "";
+    ISBN = ""; audience = Audience::Null;
     etat = Etat::Libre;
 }
 
@@ -53,6 +54,7 @@ void Livre:: affiche(){
     cout<<"Livre "<< code;
     cout<<" | Titre : "<< titre;
     cout<<" | Auteur : "<< auteur;
+    cout<<" | Genre : " << this->get_type_string();
     cout<<" | Editeur : "<< editeur;
     cout<<" | ISBN : "<< ISBN;
     cout<<" | Audience : " << this->get_audience_string();
@@ -67,7 +69,7 @@ void Livre :: set_auteur(string auteur_){auteur = auteur_;}
 string Livre :: get_titre(){return titre;}
 void Livre :: set_titre(string titre_){titre = titre_;}
 
-string Livre :: get_editeur(){return editeur}
+string Livre :: get_editeur(){return editeur;}
 void Livre :: set_editeur(string editeur_){editeur = editeur_;}
 
 string Livre :: get_isbn(){return ISBN;}

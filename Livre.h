@@ -16,7 +16,7 @@ public:
 
     // Book state
     enum class Etat {
-        Libre, Emprunte, Pret
+        Libre, Emprunte, Pret, Perdu, Pilon
     };
 
     // Target audience

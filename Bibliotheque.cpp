@@ -7,101 +7,112 @@ using std::string;
 #include <iostream>
 using namespace std;
 #include <iomanip>
-
+int Bibliotheque::code = 0;
 
 Bibliotheque::Bibliotheque() {
-    nom = NULL; adresse = NULL;
-    code ++; liste = NULL; nbrLivres = 0;
+    nom = ""; adresse = "";
+    code ++; liste = nullptr; nbrLivres = 0;
 }
 Bibliotheque::Bibliotheque(string Nom, string Adresse) {
     nom = Nom; adresse = Adresse;
-    code ++; liste = NULL; nbrLivres = 0;
+    code ++; liste = nullptr; nbrLivres = 0;
 }
-
 Bibliotheque::Bibliotheque(string Nom, string Adresse, int NbrLivres) {
     nom = Nom; adresse = Adresse;
     code ++; liste = new Livre[NbrLivres]; nbrLivres = NbrLivres;
 }
 
 
-void Bibliotheque::afficheLivres(){
-    size_t* largeur = new size_t[2];
+void Bibliotheque::afficheLivres() {
+    if (nbrLivres == 0) {
+        cout << "La bibliotheque est vide." << endl;
+        return;
+    }
+    size_t maxCode = 4;   // "CODE"
+    size_t maxTitre = 5;  // "TITRE"
+    size_t maxAuteur = 6; // "AUTEUR"
+    size_t maxAudience = 6; // "PUBLIC"
+    size_t maxISBN = 4;   // "ISBN"
+    size_t maxEtat = 4;   // "ETAT"
 
     for (int i = 0; i < nbrLivres; i++) {
-        if (liste[i].get_titre().length() > largeur[0]){largeur[0] = liste[i].get_titre().length();}
-        if (liste[i].get_auteur().length() > largeur[1]){largeur[1] = liste[i].get_auteur().length();}
+        maxCode = max(maxCode, to_string(liste[i].get_code()).length());
+        maxTitre = max(maxTitre, liste[i].get_titre().length());
+        maxAuteur = max(maxAuteur, liste[i].get_auteur().length());
+        maxAudience = max(maxAudience, liste[i].get_audience_string().length());
+        maxISBN = max(maxISBN, liste[i].get_isbn().length());
+        maxEtat = max(maxEtat, liste[i].get_etat_string().length());
     }
-    if (largeur[0] > 5){largeur[0] = 5;}
-    if (largeur[1] > 6){largeur[1] = 6;}
 
-    // entetes du tableau
-    cout << "CODE" << " TITRE" << std :: setw(largeur[1]-5);
-    cout << " AUTEUR" << std :: setw(largeur[1]-6);
-    cout << " PUBLIC" << std :: setw(5);
-    cout << " ISBN" << std :: setw(13);
-    cout << " ETAT" << std :: setw(4) << endl;
+    cout << left
+         << setw(maxCode + 2)     << "CODE"
+         << setw(maxTitre + 2)    << "TITRE"
+         << setw(maxAuteur + 2)   << "AUTEUR"
+         << setw(maxAudience + 2) << "PUBLIC"
+         << setw(maxISBN + 2)     << "ISBN"
+         << setw(maxEtat + 2)     << "ETAT"
+         << endl;
+    size_t totalWidth = maxCode + maxTitre + maxAuteur + maxAudience + maxISBN + maxEtat + 12; // +2 par colonne
+    cout << string(totalWidth, '=') << endl;
 
-    // separation entre les entetes du tableau et le contenu
-    cout << string(45 + largeur[0] + largeur[1], '=') << endl;
-
-    // contenu du tableau
-    for (int i = 0; i < nbrLivres; i++){
-        int code_ = liste[i].get_code();
-        string titre_ = liste[i].get_titre();
-        string auteur_ = liste[i].get_auteur();
-        string isbn_ = liste[i].get_isbn();
-        string audience_ = liste[i].get_audience_string();
-        string etat_ = liste[i].get_etat_string();
-
-        // les +1 servent de separaeurs entre les différentes colonnes
-        cout << code_ << std :: setw(5-to_string(code_).length()+1);
-        cout << titre_ << std :: setw(largeur[0]-titre_.length()+1);
-        cout << auteur_ << std :: setw(largeur[1]-auteur_.length()+1);
-        cout << audience_ << std :: setw(10-audience_.length()+1);
-        cout << isbn_ << std :: setw(17 - isbn_.length()+1);
-        cout << etat_ << std :: setw(8 - etat_.length()) << endl;
+    for (int i = 0; i < nbrLivres; i++) {
+        cout << left
+             << setw(maxCode + 2)     << liste[i].get_code()
+             << setw(maxTitre + 2)    << liste[i].get_titre()
+             << setw(maxAuteur + 2)   << liste[i].get_auteur()
+             << setw(maxAudience + 2) << liste[i].get_audience_string()
+             << setw(maxISBN + 2)     << liste[i].get_isbn()
+             << setw(maxEtat + 2)     << liste[i].get_etat_string()
+             << endl;
     }
 }
 
 void Bibliotheque::afficheLivres(Livre::Type cat) {
-    size_t* largeur = new size_t[2];
+    if (nbrLivres == 0) {
+        cout << "La bibliotheque est vide." << endl;
+        return;
+    }
+    size_t maxCode = 4;   // "CODE"
+    size_t maxTitre = 5;  // "TITRE"
+    size_t maxAuteur = 6; // "AUTEUR"
+    size_t maxAudience = 6; // "PUBLIC"
+    size_t maxISBN = 4;   // "ISBN"
+    size_t maxEtat = 4;   // "ETAT"
 
     for (int i = 0; i < nbrLivres; i++) {
-        if (liste[i].get_type() == cat) {
-            if (liste[i].get_titre().length() > largeur[0]){largeur[0] = liste[i].get_titre().length();}
-            if (liste[i].get_auteur().length() > largeur[1]){largeur[1] = liste[i].get_auteur().length();}
+        if (liste[i].get_type() == cat)
+        {
+            maxCode = max(maxCode, to_string(liste[i].get_code()).length());
+            maxTitre = max(maxTitre, liste[i].get_titre().length());
+            maxAuteur = max(maxAuteur, liste[i].get_auteur().length());
+            maxAudience = max(maxAudience, liste[i].get_audience_string().length());
+            maxISBN = max(maxISBN, liste[i].get_isbn().length());
+            maxEtat = max(maxEtat, liste[i].get_etat_string().length());
         }
     }
-    if (largeur[0] > 5){largeur[0] = 5;}
-    if (largeur[1] > 6){largeur[1] = 6;}
 
-    // entetes du tableau
-    cout << "CODE" << " TITRE" << std :: setw(largeur[1]-5);
-    cout << " AUTEUR" << std :: setw(largeur[1]-6);
-    cout << " PUBLIC" << std :: setw(5);
-    cout << " ISBN" << std :: setw(13);
-    cout << " ETAT" << std :: setw(4) << endl;
+    cout << left
+         << setw(maxCode + 2)     << "CODE"
+         << setw(maxTitre + 2)    << "TITRE"
+         << setw(maxAuteur + 2)   << "AUTEUR"
+         << setw(maxAudience + 2) << "PUBLIC"
+         << setw(maxISBN + 2)     << "ISBN"
+         << setw(maxEtat + 2)     << "ETAT"
+         << endl;
+    size_t totalWidth = maxCode + maxTitre + maxAuteur + maxAudience + maxISBN + maxEtat + 12; // +2 par colonne
+    cout << string(totalWidth, '=') << endl;
 
-    // separation entre les entetes du tableau et le contenu
-    cout << string(45 + largeur[0] + largeur[1], '=') << endl;
-
-    // contenu du tableau
     for (int i = 0; i < nbrLivres; i++) {
-        if (liste[i].get_type() == cat) {
-            int code_ = liste[i].get_code();
-            string titre_ = liste[i].get_titre();
-            string auteur_ = liste[i].get_auteur();
-            string isbn_ = liste[i].get_isbn();
-            string audience_ = liste[i].get_audience_string();
-            string etat_ = liste[i].get_etat_string();
-
-            // les +1 servent de separaeurs entre les différentes colonnes
-            cout << code_ << std :: setw(5-to_string(code_).length()+1);
-            cout << titre_ << std :: setw(largeur[0]-titre_.length()+1);
-            cout << auteur_ << std :: setw(largeur[1]-auteur_.length()+1);
-            cout << audience_ << std :: setw(10-audience_.length()+1);
-            cout << isbn_ << std :: setw(17 - isbn_.length()+1);
-            cout << etat_ << std :: setw(8 - etat_.length()) << endl;
+        if (liste[i].get_type() == cat)
+        {
+            cout << left
+                 << setw(maxCode + 2)     << liste[i].get_code()
+                 << setw(maxTitre + 2)    << liste[i].get_titre()
+                 << setw(maxAuteur + 2)   << liste[i].get_auteur()
+                 << setw(maxAudience + 2) << liste[i].get_audience_string()
+                 << setw(maxISBN + 2)     << liste[i].get_isbn()
+                 << setw(maxEtat + 2)     << liste[i].get_etat_string()
+                 << endl;
         }
     }
 }
@@ -117,9 +128,16 @@ void Bibliotheque::supprimerLivre(int codeLivre) {
 
 void Bibliotheque::ajoutLivre(Livre livre) {
     Livre* liste_ = new Livre[nbrLivres + 1];
-    for (int i = 0; i < nbrLivres; i++) {liste_[i] = liste[i];}
-    liste[nbrLivres + 1] = livre;
-    nbrLivres ++; liste = liste_;
+
+    for (int i = 0; i < nbrLivres; i++) {
+        liste_[i] = liste[i];
+    }
+
+    liste_[nbrLivres] = livre;
+    nbrLivres++;
+
+    delete[] liste;
+    liste = liste_;
 }
 
 void Bibliotheque::echangeLivre(Bibliotheque biblio, string ISBN) {
@@ -140,7 +158,7 @@ string Bibliotheque::get_adresse() {return adresse;}
 void Bibliotheque::set_adresse(string adresse_) {adresse = adresse_;}
 
 Livre * Bibliotheque::get_liste() {return liste;}
-void Bibliotheque::set_liste(Livre liste_) {liste = liste_;}
+void Bibliotheque::set_liste(Livre* liste_) {liste = liste_;}
 
 int Bibliotheque :: get_nbrLivres(){return nbrLivres;}
 int Bibliotheque :: get_code(){return code;}
