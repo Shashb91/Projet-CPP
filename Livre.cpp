@@ -1,17 +1,17 @@
 // Code de la classe abstraite Livre
 
 #include "Livre.h"
-int Livre::code = 0;
+int Livre::nextCodeLivre = 0;
 
 Livre::Livre() {
-    code ++; auteur = "";
+    codeLivre = ++nextCodeLivre; auteur = "";
     titre = ""; editeur = "";
     ISBN = ""; audience = Audience::Null;
     etat = Etat::Libre;
 }
 
 Livre::Livre(string auteur_, string titre_, string editeur_, string ISBN_, Audience audience_){
-    code ++; auteur = auteur_;
+    codeLivre = ++nextCodeLivre; auteur = auteur_;
     titre = titre_; editeur = editeur_;
     ISBN = ISBN_; audience = audience_;
     etat = Etat::Libre;
@@ -34,8 +34,8 @@ string Livre::get_audience_string(){
 string Livre::get_etat_string(){
     switch (etat){
     case Etat::Libre: return "Libre";break;
-    case Etat::Emprunte: return "Emprunté";break;
-    case Etat::Pret: return "Prêté";break;
+    case Etat::Emprunte: return "Emprunte";break;
+    case Etat::Pret: return "Prete";break;
     }
 }
 
@@ -51,17 +51,16 @@ string Livre::get_type_string(){
 }
 
 void Livre:: affiche(){
-    cout<<"Livre "<< code;
+    cout<<"Livre "<< codeLivre;
     cout<<" | Titre : "<< titre;
     cout<<" | Auteur : "<< auteur;
     cout<<" | Genre : " << this->get_type_string();
     cout<<" | Editeur : "<< editeur;
     cout<<" | ISBN : "<< ISBN;
-    cout<<" | Audience : " << this->get_audience_string();
     cout<<" | Etat : " << this->get_etat_string()<<endl;
 }
 
-int Livre :: get_code(){return code;}
+int Livre :: get_codeLivre(){return codeLivre;}
 
 string Livre :: get_auteur(){return auteur;}
 void Livre :: set_auteur(string auteur_){auteur = auteur_;}

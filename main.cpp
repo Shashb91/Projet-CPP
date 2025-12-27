@@ -6,7 +6,6 @@ using namespace std;
 
 
 int main() {
-
     Bibliotheque bib1("Bibliotheque Centrale", "10 rue de Paris");
     Bibliotheque bib2("Bibliotheque Universitaire", "5 avenue des Sciences");
 
@@ -64,19 +63,24 @@ int main() {
     Adherent a2("Martin", "Bob", "5 avenue Pasteur", bib1, 5);
     Adherent a3("Durand", "Claire", "9 boulevard Voltaire", bib2, 2);
 
+
+
     a1.empruntLivre("9780451524935");
     a1.empruntLivre("9780261103344");
     a2.empruntLivre("9782070360024");
     a2.retourLivre("9782070360024");
     a3.empruntLivre("9782253006325");
 
+    cout << endl;cout << endl;cout << endl;
+    bib1.afficheLivres();
+    cout << endl;
+    a1.afficheAdherent();
+
     bib1.echangeLivre(bib2, "9780261103344");
     bib1.supprimerLivre(3);
 
     cout << endl;cout << endl;cout << endl;
     bib1.afficheLivres();
-
-    cout << endl;
-    a1.afficheAdherent();
+    bib2.afficheLivres();
     return 0;
 }

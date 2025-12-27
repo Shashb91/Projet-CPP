@@ -7,19 +7,23 @@ using std::string;
 #include <iostream>
 using namespace std;
 #include <iomanip>
-int Bibliotheque::code = 0;
+int Bibliotheque::nextCodeBib = 0;
 
 Bibliotheque::Bibliotheque() {
     nom = ""; adresse = "";
-    code ++; liste = nullptr; nbrLivres = 0;
+    nextCodeBib = ++ codeBib; liste = nullptr; nbrLivres = 0;
 }
 Bibliotheque::Bibliotheque(string Nom, string Adresse) {
     nom = Nom; adresse = Adresse;
-    code ++; liste = nullptr; nbrLivres = 0;
+    nextCodeBib = ++ codeBib; liste = nullptr; nbrLivres = 0;
 }
 Bibliotheque::Bibliotheque(string Nom, string Adresse, int NbrLivres) {
     nom = Nom; adresse = Adresse;
-    code ++; liste = new Livre[NbrLivres]; nbrLivres = NbrLivres;
+    nextCodeBib = ++ codeBib; liste = new Livre[NbrLivres]; nbrLivres = NbrLivres;
+}
+
+Bibliotheque :: ~Bibliotheque(){
+    delete[] liste;
 }
 
 
@@ -36,7 +40,7 @@ void Bibliotheque::afficheLivres() {
     size_t maxEtat = 4;   // "ETAT"
 
     for (int i = 0; i < nbrLivres; i++) {
-        maxCode = max(maxCode, to_string(liste[i].get_code()).length());
+        maxCode = max(maxCode, to_string(liste[i].get_codeLivre()).length());
         maxTitre = max(maxTitre, liste[i].get_titre().length());
         maxAuteur = max(maxAuteur, liste[i].get_auteur().length());
         maxAudience = max(maxAudience, liste[i].get_audience_string().length());
@@ -57,7 +61,7 @@ void Bibliotheque::afficheLivres() {
 
     for (int i = 0; i < nbrLivres; i++) {
         cout << left
-             << setw(maxCode + 2)     << liste[i].get_code()
+             << setw(maxCode + 2)     << liste[i].get_codeLivre()
              << setw(maxTitre + 2)    << liste[i].get_titre()
              << setw(maxAuteur + 2)   << liste[i].get_auteur()
              << setw(maxAudience + 2) << liste[i].get_audience_string()
@@ -82,7 +86,7 @@ void Bibliotheque::afficheLivres(Livre::Type cat) {
     for (int i = 0; i < nbrLivres; i++) {
         if (liste[i].get_type() == cat)
         {
-            maxCode = max(maxCode, to_string(liste[i].get_code()).length());
+            maxCode = max(maxCode, to_string(liste[i].get_codeLivre()).length());
             maxTitre = max(maxTitre, liste[i].get_titre().length());
             maxAuteur = max(maxAuteur, liste[i].get_auteur().length());
             maxAudience = max(maxAudience, liste[i].get_audience_string().length());
@@ -106,7 +110,7 @@ void Bibliotheque::afficheLivres(Livre::Type cat) {
         if (liste[i].get_type() == cat)
         {
             cout << left
-                 << setw(maxCode + 2)     << liste[i].get_code()
+                 << setw(maxCode + 2)     << liste[i].get_codeLivre()
                  << setw(maxTitre + 2)    << liste[i].get_titre()
                  << setw(maxAuteur + 2)   << liste[i].get_auteur()
                  << setw(maxAudience + 2) << liste[i].get_audience_string()
@@ -120,7 +124,7 @@ void Bibliotheque::afficheLivres(Livre::Type cat) {
 void Bibliotheque::supprimerLivre(int codeLivre) {
     int ipos = 0;
     for (int i = 0; i < nbrLivres; i++) {
-        if (codeLivre == liste[i].get_code()) {ipos = i;}
+        if (codeLivre == liste[i].get_codeLivre()) {ipos = i;}
     }
     for (int i = ipos;i < nbrLivres - 1; i++) {liste[i] = liste[i+1];}
     nbrLivres --;
@@ -128,28 +132,33 @@ void Bibliotheque::supprimerLivre(int codeLivre) {
 
 void Bibliotheque::ajoutLivre(Livre livre) {
     Livre* liste_ = new Livre[nbrLivres + 1];
-
     for (int i = 0; i < nbrLivres; i++) {
         liste_[i] = liste[i];
     }
-
     liste_[nbrLivres] = livre;
     nbrLivres++;
-
     delete[] liste;
     liste = liste_;
 }
 
-void Bibliotheque::echangeLivre(Bibliotheque biblio, string ISBN) {
+void Bibliotheque::echangeLivre(Bibliotheque& biblio, string ISBN) {
+    bool found = false;
     Livre livre;
-    for (int i = 0; i < nbrLivres; i++){
-        if (biblio.liste[i].get_isbn() == ISBN){
+    for (int i = 0; i < biblio.nbrLivres; i++) {
+        if (biblio.liste[i].get_isbn() == ISBN) {
             livre = biblio.liste[i];
+            found = true;
+            break;
         }
     }
+    if (!found) {
+        cout << "404 : Livre introuvable" << endl;
+        return;
+    }
     this->ajoutLivre(livre);
-    biblio.supprimerLivre(livre.get_code());
+    biblio.supprimerLivre(livre.get_codeLivre());
 }
+
 
 string Bibliotheque::get_nom() {return nom;}
 void Bibliotheque::set_nom(string nom_) { nom = nom_;}
@@ -161,4 +170,4 @@ Livre * Bibliotheque::get_liste() {return liste;}
 void Bibliotheque::set_liste(Livre* liste_) {liste = liste_;}
 
 int Bibliotheque :: get_nbrLivres(){return nbrLivres;}
-int Bibliotheque :: get_code(){return code;}
+int Bibliotheque :: get_codeBib(){return codeBib;}

@@ -13,14 +13,15 @@ using namespace std;
 class Adherent {
 private:
     string nom, prenom, adresse;
-    static int numAdherent;
+    static int nextNumAdherent;
+    int numAdherent, maxEmprunt, tailleListeEmprunt;
     Bibliotheque bib;
     Livre* liste;
-    int maxEmprunt;
-    int tailleListeEmprunt;
+
 
 public:
-    Adherent(string nom_, string prenom_, string adresse_, Bibliotheque bib_, int maxEmprunt_);
+    Adherent(string nom_, string prenom_, string adresse_, Bibliotheque& bib_, int maxEmprunt_);
+    ~Adherent();
 
     void empruntLivre(string ISBN); void retourLivre(string ISBN);
     void afficheAdherent();

@@ -24,7 +24,8 @@ public:
     };
 
 private:
-    static int code;
+    static int nextCodeLivre;
+    int codeLivre;
     string auteur, titre, editeur, ISBN;
     Audience audience;
     Etat etat;
@@ -36,7 +37,7 @@ public:
     virtual Type get_type();
     virtual void affiche();
 
-    int get_code();
+    int get_codeLivre();
     string get_auteur(); void set_auteur(string auteur_);
     string get_titre(); void set_titre(string titre_);
     string get_editeur(); void set_editeur(string editeur_);

@@ -10,23 +10,24 @@ using std::string;
 class Bibliotheque {
 private:
     string nom, adresse;
-    static int  code;
+    static int  nextCodeBib;
+    int codeBib, nbrLivres;
     Livre*  liste;
-    int nbrLivres;
 
 public:
     Bibliotheque(); Bibliotheque(string Nom, string Adresse);Bibliotheque(string Nom, string Adresse, int NbrLivres);
+    ~Bibliotheque();
 
     void afficheLivres(); void afficheLivres(Livre :: Type cat);
     void supprimerLivre(int code);
     void ajoutLivre(Livre livre);
-    void echangeLivre(Bibliotheque biblio, string ISBN);
+    void echangeLivre(Bibliotheque& biblio, string ISBN);
 
     string get_nom(); void set_nom(string nom_);
     string get_adresse(); void set_adresse(string adresse_);
     Livre* get_liste(); void set_liste(Livre* liste_);
     int get_nbrLivres();
-    int get_code();
+    int get_codeBib();
 };
 
 
