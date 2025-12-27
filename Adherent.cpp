@@ -64,6 +64,17 @@ void Adherent::retourLivre(string ISBN){
     }
 }
 
+void Adherent::afficheAdherent(){
+    cout << "Adherent numero : " << numAdherent << endl;
+    cout << "==========================================" << endl;
+    cout << "Nom : " << nom << endl;
+    cout << "Prenom : " << prenom << endl;
+    cout << "Adherent max Emprunt: " << maxEmprunt << endl;
+    cout << "Bibliotheque : " << bib.get_code() << endl;
+    cout << "Liste des livres empruntes : " << endl;
+    for (int i = 0; i < tailleListeEmprunt ; i++){liste[i].affiche();}
+}
+
 int Adherent::get_numAdherent(){ return numAdherent;}
 
 string Adherent::get_nom(){ return nom;}

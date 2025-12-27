@@ -12,9 +12,7 @@ using namespace std;
 
 class Adherent {
 private:
-    string nom;
-    string prenom;
-    string adresse;
+    string nom, prenom, adresse;
     static int numAdherent;
     Bibliotheque bib;
     Livre* liste;
@@ -25,6 +23,7 @@ public:
     Adherent(string nom_, string prenom_, string adresse_, Bibliotheque bib_, int maxEmprunt_);
 
     void empruntLivre(string ISBN); void retourLivre(string ISBN);
+    void afficheAdherent();
 
     int get_numAdherent();
     string get_nom(); void set_nom(string nom_);

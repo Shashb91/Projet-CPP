@@ -9,8 +9,7 @@ using std::string;
 
 class Bibliotheque {
 private:
-    string nom;
-    string adresse;
+    string nom, adresse;
     static int  code;
     Livre*  liste;
     int nbrLivres;

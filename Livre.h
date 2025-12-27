@@ -7,7 +7,6 @@ using std::string;
 #include <iostream>
 using namespace std;
 
-
 class Livre {
 public:
     enum class Type {
@@ -26,10 +25,7 @@ public:
 
 private:
     static int code;
-    string auteur;
-    string titre;
-    string editeur;
-    string ISBN;
+    string auteur, titre, editeur, ISBN;
     Audience audience;
     Etat etat;
 

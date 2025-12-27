@@ -7,16 +7,9 @@ using namespace std;
 
 int main() {
 
-    // =========================
-    // Create libraries
-    // =========================
-
     Bibliotheque bib1("Bibliotheque Centrale", "10 rue de Paris");
     Bibliotheque bib2("Bibliotheque Universitaire", "5 avenue des Sciences");
 
-    // =========================
-    // Create books (30)
-    // =========================
     Livre livres[] = {
         Livre("Orwell", "1984", "Gallimard", "9780451524935", Livre::Audience::Adulte),
         Livre("Huxley", "Brave New World", "Pocket", "9780060850524", Livre::Audience::Adulte),
@@ -54,52 +47,36 @@ int main() {
         Livre("Andersen", "La Petite Sirene", "Livre de Poche", "9782253006325", Livre::Audience::Jeunesse)
     };
 
-    // =========================
-    // Add books to libraries
-    // =========================
-
     for (int i = 0; i < 20; i++)
         bib1.ajoutLivre(livres[i]);
 
     for (int i = 20; i < 30; i++)
         bib2.ajoutLivre(livres[i]);
 
-    // =========================
-    // Display books
-    // =========================
     cout << "=== Livres Bibliotheque 1 ===" << endl;
     bib1.afficheLivres();
     cout << endl;cout << endl;
     cout << "=== Livres Bibliotheque 2 ===" << endl;
     bib2.afficheLivres();
     cout << endl;cout << endl;
-    // =========================
-    // Create members
-    // =========================
+
     Adherent a1("Dupont", "Alice", "12 rue Victor Hugo", bib1, 3);
     Adherent a2("Martin", "Bob", "5 avenue Pasteur", bib1, 5);
     Adherent a3("Durand", "Claire", "9 boulevard Voltaire", bib2, 2);
 
-    // =========================
-    // Borrow / return books
-    // =========================
     a1.empruntLivre("9780451524935");
     a1.empruntLivre("9780261103344");
-
     a2.empruntLivre("9782070360024");
     a2.retourLivre("9782070360024");
-
     a3.empruntLivre("9782253006325");
 
-    // =========================
-    // Exchange book between libraries
-    // =========================
     bib1.echangeLivre(bib2, "9780261103344");
-
-    // =========================
-    // Remove a book
-    // =========================
     bib1.supprimerLivre(3);
+
+    cout << endl;cout << endl;cout << endl;
+    bib1.afficheLivres();
+
+    cout << endl;
+    a1.afficheAdherent();
     return 0;
 }
-// Fichier main du projet
