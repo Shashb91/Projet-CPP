@@ -27,8 +27,9 @@ string Livre::get_audience_string(){
     case Audience::Jeunesse: return "Jeunesse";break;
     case Audience::Adolescent: return "Adolescent";break;
     case Audience::Adulte: return "Adulte";break;
-    case Audience::Tout_public: return "Tout_public";break;
+    case Audience::Tout_public: return "Tout public";break;
     }
+    return "";
 }
 
 string Livre::get_etat_string(){
@@ -37,6 +38,7 @@ string Livre::get_etat_string(){
     case Etat::Emprunte: return "Emprunte";break;
     case Etat::Pret: return "Prete";break;
     }
+    return "";
 }
 
 string Livre::get_type_string(){
@@ -48,6 +50,7 @@ string Livre::get_type_string(){
     case Type::Roman: return "Roman";break;
     case Type::Theatre: return "Theatre";break;
     }
+    return "";
 }
 
 void Livre:: affiche(){

@@ -8,9 +8,9 @@ using namespace std;
 
 int main() {
     // bibliotheques
-    Bibliotheque bib1("Bibliotheque Centrale", "10 rue de Paris");
-    Bibliotheque bib2("Mediatheque Jean Moulin", "45 Avenue de la Republique", 1000);
-    Bibliotheque bib3("Espace Lecture Jeunesse", "5 Square des Arts");
+    Bibliotheque bib1("Bibliotheque Centrale", "10 rue de Paris",40);
+    Bibliotheque bib2("Mediatheque Jean Moulin", "45 Avenue de la Republique", 40);
+    Bibliotheque bib3("Espace Lecture Jeunesse", "5 Square des Arts",40);
 
     // Livres
     bib1.ajoutLivre(Livre("George Orwell", "1984", "Gallimard", "9780451524935", Livre::Audience::Adulte));
@@ -148,8 +148,6 @@ int main() {
     Adherent a8("Dubois", "Jade", "101 Rue de Rivoli", bib3, 8);
     Adherent a9("Moreau", "Nathan", "2 Rue de l'Eglise", bib3, 5);
     Adherent a10("Laurent", "Alice", "66 Avenue Victor Hugo", bib3, 7);
-
-    cout << "Environment populated with 120 books, 10 members, and 3 libraries." << endl;
 
     cout<<endl;cout<<endl;
     bib1.afficheLivres();

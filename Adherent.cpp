@@ -9,8 +9,8 @@ using namespace std;
 #include "Livre.h"
 int Adherent::nextNumAdherent = 0;
 
-Adherent::Adherent(string nom_, string prenom_, string adresse_, Bibliotheque& bib_, int maxEmprunt_){
-    nextNumAdherent = ++ numAdherent;
+Adherent::Adherent(string nom_, string prenom_, string adresse_, Bibliotheque bib_, int maxEmprunt_){
+    numAdherent = ++ nextNumAdherent;
     nom = nom_;
     prenom = prenom_;
     adresse = adresse_;
@@ -19,6 +19,7 @@ Adherent::Adherent(string nom_, string prenom_, string adresse_, Bibliotheque& b
     liste = new Livre[maxEmprunt];
     tailleListeEmprunt = 0;
 }
+
 Adherent :: ~Adherent(){delete[] liste;}
 
 void Adherent::empruntLivre(string ISBN) {

@@ -11,15 +11,15 @@ int Bibliotheque::nextCodeBib = 0;
 
 Bibliotheque::Bibliotheque() {
     nom = ""; adresse = "";
-    nextCodeBib = ++ codeBib; liste = nullptr; nbrLivres = 0;
+    codeBib = ++ nextCodeBib; liste = nullptr; nbrLivres = 0;
 }
 Bibliotheque::Bibliotheque(string Nom, string Adresse) {
     nom = Nom; adresse = Adresse;
-    nextCodeBib = ++ codeBib; liste = nullptr; nbrLivres = 0;
+    codeBib = ++ nextCodeBib; liste = nullptr; nbrLivres = 0;
 }
 Bibliotheque::Bibliotheque(string Nom, string Adresse, int NbrLivres) {
     nom = Nom; adresse = Adresse;
-    nextCodeBib = ++ codeBib; liste = new Livre[NbrLivres]; nbrLivres = NbrLivres;
+    codeBib = ++ nextCodeBib; liste = new Livre[NbrLivres]; nbrLivres = NbrLivres;
 }
 
 Bibliotheque :: ~Bibliotheque(){

@@ -20,7 +20,7 @@ private:
 
 
 public:
-    Adherent(string nom_, string prenom_, string adresse_, Bibliotheque& bib_, int maxEmprunt_);
+    Adherent(string nom_, string prenom_, string adresse_, Bibliotheque bib_, int maxEmprunt_);
     ~Adherent();
 
     void empruntLivre(string ISBN); void retourLivre(string ISBN);
