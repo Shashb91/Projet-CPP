@@ -19,7 +19,7 @@ public:
     ~Bibliotheque();
 
     void afficheLivres(); void afficheLivres(Livre :: Type cat);
-    void supprimerLivre(int code);
+    void supprimerLivre(int codeLivre, Livre::Etat etat);
     void ajoutLivre(Livre livre);
     void echangeLivre(Bibliotheque& biblio, string ISBN);
 

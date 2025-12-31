@@ -103,8 +103,8 @@ void Bibliotheque::afficheLivres(Livre::Type cat) {
          << setw(maxISBN + 2)     << "ISBN"
          << setw(maxEtat + 2)     << "ETAT"
          << endl;
-    size_t totalWidth = maxCode + maxTitre + maxAuteur + maxAudience + maxISBN + maxEtat + 12; // +2 par colonne
-    cout << string(totalWidth, '=') << endl;
+    size_t largeur = maxCode + maxTitre + maxAuteur + maxAudience + maxISBN + maxEtat + 12;
+    cout << string(largeur, '=') << endl;
 
     for (int i = 0; i < nbrLivres; i++) {
         if (liste[i].get_type() == cat)
@@ -121,13 +121,24 @@ void Bibliotheque::afficheLivres(Livre::Type cat) {
     }
 }
 
-void Bibliotheque::supprimerLivre(int codeLivre) {
-    int ipos = 0;
-    for (int i = 0; i < nbrLivres; i++) {
-        if (codeLivre == liste[i].get_codeLivre()) {ipos = i;}
+void Bibliotheque::supprimerLivre(int codeLivre, Livre :: Etat etat) {
+    try{
+        for (int i = 0; i < nbrLivres; i++) {
+            if (codeLivre == liste[i].get_codeLivre()){
+                liste[i].set_etat(etat);
+                if (etat == Livre :: Etat :: Pret){throw 203;}
+                if (etat == Livre :: Etat :: Pilon){throw 204;}
+                if (etat == Livre :: Etat :: Perdu){throw 205;}
+            }
+        }
+        throw 404;
     }
-    for (int i = ipos;i < nbrLivres - 1; i++) {liste[i] = liste[i+1];}
-    nbrLivres --;
+    catch (int e){
+        if (e == 404){cout << e << " : Livre introuvable" << endl;}
+        if (e == 203){cout << e << " : Livre prete a une bibliotheque" << endl;}
+        if (e == 204){cout << e << " : Livre envoye au pilon" << endl;}
+        if (e == 205){cout << e << " : Livre envoye perdu" << endl;}
+    }
 }
 
 void Bibliotheque::ajoutLivre(Livre livre) {
@@ -142,21 +153,21 @@ void Bibliotheque::ajoutLivre(Livre livre) {
 }
 
 void Bibliotheque::echangeLivre(Bibliotheque& biblio, string ISBN) {
-    bool found = false;
+    bool trouve = false;
     Livre livre;
     for (int i = 0; i < biblio.nbrLivres; i++) {
         if (biblio.liste[i].get_isbn() == ISBN) {
             livre = biblio.liste[i];
-            found = true;
+            trouve = true;
             break;
         }
     }
-    if (!found) {
+    if (!trouve) {
         cout << "404 : Livre introuvable" << endl;
         return;
     }
     this->ajoutLivre(livre);
-    biblio.supprimerLivre(livre.get_codeLivre());
+    biblio.supprimerLivre(livre.get_codeLivre(), Livre :: Etat :: Pret);
 }
 
 
