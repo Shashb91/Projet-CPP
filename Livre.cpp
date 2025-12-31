@@ -58,7 +58,6 @@ void Livre:: affiche(){
     cout<<" | Titre : "<< titre;
     cout<<" | Auteur : "<< auteur;
     cout<<" | Genre : " << this->get_type_string();
-    cout<<" | Editeur : "<< editeur;
     cout<<" | ISBN : "<< ISBN;
     cout<<" | Etat : " << this->get_etat_string()<<endl;
 }

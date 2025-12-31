@@ -9,6 +9,8 @@ using namespace std;
 
 class Livre {
 public:
+    virtual ~Livre() = default;
+
     enum class Type {
         Null,BD,Recueil,Roman,Theatre,Album
     };

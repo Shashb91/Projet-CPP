@@ -15,23 +15,23 @@ private:
     string nom, prenom, adresse;
     static int nextNumAdherent;
     int numAdherent, maxEmprunt, tailleListeEmprunt;
-    Bibliotheque bib;
+    Bibliotheque* bib;
     Livre* liste;
 
 
 public:
-    Adherent(string nom_, string prenom_, string adresse_, Bibliotheque bib_, int maxEmprunt_);
+    Adherent(string nom_, string prenom_, string adresse_, Bibliotheque& bib_, int maxEmprunt_);
     ~Adherent();
 
     void empruntLivre(string ISBN); void retourLivre(string ISBN);
-    void afficheAdherent();
+    void affiche();
 
     int get_numAdherent();
     string get_nom(); void set_nom(string nom_);
     string get_prenom(); void set_prenom(string prenom_);
     string get_adresse(); void set_adresse(string adresse);
     int get_maxEmprunt(); void set_maxEmprunt(int maxEmprunt_);
-    Bibliotheque get_bib(); void set_bib(Bibliotheque bib_);
+    Bibliotheque* get_bib(); void set_bib(Bibliotheque& bib_);
     Livre* get_liste(); void set_liste(Livre* liste_);
 };
 
