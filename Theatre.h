@@ -9,10 +9,10 @@
 
 class Theatre : public Livre
 {
-public:
+private:
     int siecle;
 
-private:
+public:
     Theatre();
     Theatre(string auteur_, string titre_, string editeur_, string ISBN_, Audience audience_, int siecle_);
 

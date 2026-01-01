@@ -16,7 +16,7 @@ Adherent::Adherent(string nom_, string prenom_, string adresse_, Bibliotheque& b
     adresse = adresse_;
     bib = &bib_;
     maxEmprunt = maxEmprunt_;
-    liste = new Livre[maxEmprunt];
+    liste = new Livre*[maxEmprunt];
     tailleListeEmprunt = 0;
 }
 
@@ -27,22 +27,22 @@ void Adherent::empruntLivre(string ISBN) {
         if (tailleListeEmprunt >= maxEmprunt) {
             throw 301;
         }
-        Livre* listebib = bib->get_liste();
+        Livre** listebib = bib->get_liste();
         for (int i = 0; i < bib->get_nbrLivres(); i++) {
-            if (listebib[i].get_isbn() == ISBN &&
-                listebib[i].get_etat() == Livre::Etat::Libre) {
+            if (listebib[i]->get_isbn() == ISBN &&
+                listebib[i]->get_etat() == Livre::Etat::Libre) {
 
-                Livre* nouvelleListe = new Livre[tailleListeEmprunt + 1];
+                Livre** nouvelleListe = new Livre*[tailleListeEmprunt + 1];
 
                 for (int j = 0; j < tailleListeEmprunt; j++) {
                     nouvelleListe[j] = liste[j];
                 }
                 nouvelleListe[tailleListeEmprunt] = listebib[i];
-                nouvelleListe[tailleListeEmprunt].set_etat(Livre :: Etat :: Emprunte);
+                nouvelleListe[tailleListeEmprunt]->set_etat(Livre :: Etat :: Emprunte);
                 delete[] liste;
                 liste = nouvelleListe;
                 tailleListeEmprunt++;
-                listebib[i].set_etat(Livre::Etat::Emprunte);
+                listebib[i]->set_etat(Livre::Etat::Emprunte);
                 cout << "201 : Emprunt effectue" << endl;
                 return;
                 }
@@ -60,25 +60,21 @@ void Adherent::empruntLivre(string ISBN) {
 
 
 void Adherent::retourLivre(string ISBN){
-    try
-    {
+    try{
         if (tailleListeEmprunt < 0 ){
             int ipos;
-            Livre* listebib = bib->get_liste();
-            for (int i = 0; i < tailleListeEmprunt ; i ++){if (listebib[i].get_isbn() == ISBN){ipos = i;}}
+            Livre** listebib = bib->get_liste();
+            for (int i = 0; i < tailleListeEmprunt ; i ++){if (listebib[i]->get_isbn() == ISBN){ipos = i;}}
 
             // comparaison entre les codes au lieu de l'ISBN puisque c'est l'exemplaire qui compte au retour
-            for (int k = 0; k < bib->get_nbrLivres(); k ++){if (liste[ipos].get_codeLivre() == listebib[k].get_codeLivre()){listebib[k].set_etat(Livre :: Etat :: Libre);}}
+            for (int k = 0; k < bib->get_nbrLivres(); k ++){if (liste[ipos]->get_codeLivre() == listebib[k]->get_codeLivre()){listebib[k]->set_etat(Livre :: Etat :: Libre);}}
             for (int j = ipos; j < tailleListeEmprunt - 1 ; j++){liste[j] = liste[j+1];}
             tailleListeEmprunt --;
             cout << "202 : Retour effectue" << endl;
         }
         else{throw 302;}
     }
-    catch(int e)
-    {
-        cout << e << " : Effectuez un emprunt avant un retour"<<endl;
-    }
+    catch(int e){cout << e << " : Effectuez un emprunt avant un retour"<<endl;}
 }
 
 void Adherent::affiche(){
@@ -89,7 +85,7 @@ void Adherent::affiche(){
     cout << "Adherent max Emprunt: " << maxEmprunt << endl;
     cout << "Bibliotheque : " << bib->get_codeBib() << endl;
     cout << "Liste des livres empruntes : " << endl;
-    for (int i = 0; i < tailleListeEmprunt ; i++){liste[i].affiche();}
+    for (int i = 0; i < tailleListeEmprunt ; i++){liste[i]->affiche();}
 }
 
 int Adherent::get_numAdherent(){ return nextNumAdherent;}
@@ -109,5 +105,5 @@ void Adherent::set_maxEmprunt(int maxEmprunt_){maxEmprunt = maxEmprunt_;}
 Bibliotheque* Adherent::get_bib(){return bib;}
 void Adherent::set_bib(Bibliotheque& bib_){bib = &bib_;}
 
-Livre* Adherent::get_liste(){return liste;}
-void Adherent::set_liste(Livre* liste_){ liste = liste_;}
+Livre** Adherent::get_liste(){return liste;}
+void Adherent::set_liste(Livre** liste_){ liste = liste_;}

@@ -1,83 +1,77 @@
 #include <iostream>
-#include "Livre.h"
-#include "Adherent.h"
 #include "Bibliotheque.h"
+#include "Adherent.h"
+#include "Album.h"
+#include "BD.h"
+#include "Receuil.h"
+#include "Roman.h"
+#include "Theatre.h"
 
 using namespace std;
 
 int main() {
-    Bibliotheque bib1("Bibliotheque Centrale", "10 rue de Paris");
-    Bibliotheque bib2("Bibliotheque Universitaire", "5 avenue des Sciences");
+    Bibliotheque bib1("Bibliotheque Centrale", "12 rue Victor Hugo");
+    Bibliotheque bib2("Bibliotheque Municipale", "8 avenue Voltaire");
 
-    Livre livres[] = {
-        Livre("Orwell", "1984", "Gallimard", "9780451524935", Livre::Audience::Adulte),
-        Livre("Huxley", "Brave New World", "Pocket", "9780060850524", Livre::Audience::Adulte),
-        Livre("Tolkien", "The Hobbit", "HarperCollins", "9780261103344", Livre::Audience::Tout_public),
-        Livre("Rowling", "Harry Potter 1", "Bloomsbury", "9780747532699", Livre::Audience::Jeunesse),
-        Livre("Rowling", "Harry Potter 2", "Bloomsbury", "9780747538493", Livre::Audience::Jeunesse),
+    Livre* l1 = new Roman("Albert Camus", "L'Etranger", "Gallimard", "9782070360024",Livre::Audience::Adulte, Roman::Genre::Roman_moeurs);
+    Livre* l2 = new Roman("George Orwell", "1984", "Secker & Warburg", "9780451524935",Livre::Audience::Adulte, Roman::Genre::Roman_anticipation);
+    Livre* l3 = new Roman("Victor Hugo", "Les Miserables", "A. Lacroix", "9782253096337",Livre::Audience::Adulte, Roman::Genre::Roman_historique);
+    Livre* l4 = new Roman("Jules Verne", "Vingt mille lieues sous les mers", "Hetzel","9782253006329", Livre::Audience::Adolescent,Roman::Genre::Roman_aventure);
+    Livre* l5 = new Roman("Mary Shelley", "Frankenstein", "Lackington", "9780143131847",Livre::Audience::Adulte, Roman::Genre::Roman_gothique);
 
-        Livre("Camus", "L'Etranger", "Gallimard", "9782070360024", Livre::Audience::Adulte),
-        Livre("Hugo", "Les Miserables", "Folio", "9782070409181", Livre::Audience::Adulte),
-        Livre("Zola", "Germinal", "Pocket", "9782266091612", Livre::Audience::Adulte),
-        Livre("Moliere", "Le Malade Imaginaire", "Larousse", "9782035871293", Livre::Audience::Adolescent),
-        Livre("Shakespeare", "Hamlet", "Penguin", "9780141015866", Livre::Audience::Adolescent),
+    Livre* l6  = new BD("Herge", "Tintin au Tibet", "Casterman", "9782203001037",Livre::Audience::Jeunesse, "Herge");
+    Livre* l7  = new BD("Goscinny", "Asterix le Gaulois", "Hachette", "9782012101333",Livre::Audience::Tout_public, "Uderzo");
+    Livre* l8  = new BD("Miyazaki", "Nausicaa", "Glénat", "9782723456732",Livre::Audience::Adolescent, "Hayao Miyazaki");
+    Livre* l9  = new BD("Moebius", "Arzach", "Les Humanoides Associes", "9782731601239",Livre::Audience::Adulte, "Moebius");
+    Livre* l10 = new BD("Franquin", "Gaston Lagaffe", "Dupuis", "9782800142304",Livre::Audience::Tout_public, "Franquin");
 
-        Livre("Herge", "Tintin au Tibet", "Casterman", "9782203001016", Livre::Audience::Jeunesse),
-        Livre("Goscinny", "Asterix le Gaulois", "Hachette", "9782012101332", Livre::Audience::Tout_public),
-        Livre("Uderzo", "Asterix et Cleopatre", "Hachette", "9782012101356", Livre::Audience::Tout_public),
-        Livre("Franquin", "Gaston Lagaffe", "Dupuis", "9782800142016", Livre::Audience::Tout_public),
-        Livre("Miyazaki", "Nausicaa", "Glenat", "9782723428173", Livre::Audience::Adolescent),
+    Livre* l11 = new Album("Antoine de Saint-Exupery", "Le Petit Prince","Reynal & Hitchcock", "9780156013987",Livre::Audience::Jeunesse, true, false);
+    Livre* l12 = new Album("Claude Ponti", "Blaise et le chateau d'Anne Hiversere","Ecole des Loisirs", "9782211056761",Livre::Audience::Jeunesse, true, false);
+    Livre* l13 = new Album("Shaun Tan", "The Arrival", "Arthur A. Levine","9780439895292", Livre::Audience::Adulte, true, false);
+    Livre* l14 = new Album("Leo Lionni", "Petit-Bleu et Petit-Jaune","Ecole des Loisirs", "9782211002348",Livre::Audience::Jeunesse, true, false);
+    Livre* l15 = new Album("Tomi Ungerer", "Les Trois Brigands","Ecole des Loisirs", "9782211006179",Livre::Audience::Jeunesse, true, false);
 
-        Livre("Saint-Exupery", "Le Petit Prince", "Gallimard", "9782070612758", Livre::Audience::Jeunesse),
-        Livre("Verne", "Vingt mille lieues", "Folio", "9782070360536", Livre::Audience::Adolescent),
-        Livre("Asimov", "Foundation", "Spectra", "9780553293357", Livre::Audience::Adulte),
-        Livre("Bradbury", "Fahrenheit 451", "Folio", "9782070368228", Livre::Audience::Adulte),
-        Livre("Dick", "Ubik", "J'ai Lu", "9782290005544", Livre::Audience::Adulte),
+    Livre* l16 = new Receuil("Charles Baudelaire", "Les Fleurs du mal","Poulet-Malassis", "9782070408504",Livre::Audience::Adulte, true, false);
+    Livre* l17 = new Receuil("Arthur Rimbaud", "Illuminations","Vanier", "9782070413119",Livre::Audience::Adulte, true, false);
+    Livre* l18 = new Receuil("Paul Verlaine", "Romances sans paroles","Lemerre", "9782070413201",Livre::Audience::Adulte, true, false);
+    Livre* l19 = new Receuil("Jacques Prevert", "Paroles","Gallimard", "9782070320295",Livre::Audience::Tout_public, true, false);
+    Livre* l20 = new Receuil("Emily Dickinson", "Poems","Roberts Brothers", "9780679642781",Livre::Audience::Adulte, true, false);
 
-        Livre("King", "It", "Pocket", "9782266286261", Livre::Audience::Adulte),
-        Livre("Lovecraft", "Call of Cthulhu", "Folio", "9782070409877", Livre::Audience::Adulte),
-        Livre("Dumas", "Les Trois Mousquetaires", "Pocket", "9782266091613", Livre::Audience::Tout_public),
-        Livre("Kafka", "Le Proces", "Folio", "9782070360901", Livre::Audience::Adulte),
-        Livre("Poe", "Histoires Extraordinaires", "GF", "9782080701400", Livre::Audience::Adolescent),
+    Livre* l21 = new Theatre("Moliere", "Le Malade Imaginaire","Barbin", "9782070408269",Livre::Audience::Tout_public, 17);
+    Livre* l22 = new Theatre("Racine", "Phedre","Claude Barbin", "9782070416356",Livre::Audience::Adulte, 17);
+    Livre* l23 = new Theatre("Shakespeare", "Hamlet","Simon & Schuster", "9780743477123",Livre::Audience::Adulte, 16);
+    Livre* l24 = new Theatre("Beckett", "En attendant Godot","Minuit", "9782707300809",Livre::Audience::Adulte, 20);
+    Livre* l25 = new Theatre("Ionesco", "La Cantatrice Chauve","Gallimard", "9782070368396",Livre::Audience::Adulte, 20);
 
-        Livre("Lewis", "Narnia", "Pocket", "9782266154158", Livre::Audience::Jeunesse),
-        Livre("Collodi", "Pinocchio", "Folio", "9782070612864", Livre::Audience::Jeunesse),
-        Livre("Perrault", "Contes", "Larousse", "9782035880073", Livre::Audience::Jeunesse),
-        Livre("Grimm", "Contes", "Folio", "9782070405206", Livre::Audience::Jeunesse),
-        Livre("Andersen", "La Petite Sirene", "Livre de Poche", "9782253006325", Livre::Audience::Jeunesse)
-    };
+    Livre* l26 = new Roman("Emile Zola", "Germinal", "Charpentier", "9782253006190",Livre::Audience::Adulte, Roman::Genre::Roman_moeurs);
+    Livre* l27 = new Roman("Alexandre Dumas", "Le Comte de Monte-Cristo", "Penguin","9780140449266", Livre::Audience::Adolescent,Roman::Genre::Roman_aventure);
+    Livre* l28 = new Roman("Bram Stoker", "Dracula", "Archibald Constable","9780141439846", Livre::Audience::Adulte,Roman::Genre::Roman_gothique);
+    Livre* l29 = new Roman("Lewis Carroll", "Alice au pays des merveilles", "Macmillan","9781503222687", Livre::Audience::Jeunesse,Roman::Genre::Conte);
+    Livre* l30 = new Roman("Herman Melville", "Moby Dick", "Harper & Brothers","9781503280786", Livre::Audience::Adulte,Roman::Genre::Roman_aventure);
 
+    Livre* livres[] = {l1,l2,l3,l4,l5,l6,l7,l8,l9,l10,
+                       l11,l12,l13,l14,l15,l16,l17,l18,l19,l20,
+                       l21,l22,l23,l24,l25,l26,l27,l28,l29,l30};
 
-    for (int i = 0; i < 20; i++)
-        bib1.ajoutLivre(livres[i]);
+    for (int i = 0; i < 15; i++) bib1.ajoutLivre(livres[i]);
+    for (int i = 15; i < 30; i++) bib2.ajoutLivre(livres[i]);
 
-    for (int i = 20; i < 30; i++)
-        bib2.ajoutLivre(livres[i]);
+    Adherent a1("Dupont", "Jean", "10 rue A", bib1, 3);
+    Adherent a2("Martin", "Claire", "22 rue B", bib2, 2);
+    Adherent a3("Durand", "Luc", "5 avenue C", bib1, 4);
 
-    cout << "=== Livres Bibliotheque 1 ===" << endl;
+    a1.empruntLivre("9782800142304");
+    a1.retourLivre("9782800142304");
+    a3.empruntLivre("9782800142304");
+    a2.empruntLivre("9781503280786");
+
+    cout << "\n===== BIBLIOTHEQUE 1 =====\n";
     bib1.afficheLivres();
-
     cout << endl; cout << endl;
-    cout << "=== Livres Bibliotheque 2 ===" << endl;
-    bib2.afficheLivres();
+    cout << "\n===== BIBLIOTHEQUE 2 =====\n";
+    bib2.afficheLivres(Livre :: Type :: Theatre);
 
-    cout << endl; cout << endl;
-    Adherent a1("Dupont", "Alice", "12 rue Victor Hugo", bib1, 3);
-    Adherent a2("Martin", "Bob", "5 avenue Pasteur", bib1, 5);
-    Adherent a3("Durand", "Claire", "9 boulevard Voltaire", bib2, 2);
 
-    a1.empruntLivre("9782723428173");
-    a1.empruntLivre("9782012101332");
-    cout<<endl;
-    a2.empruntLivre("9782070409181");
-    a2.retourLivre("9782070409877");
-    cout<<endl;
-    a3.empruntLivre("9782070409877");
-    cout<<endl;
-    a1.affiche();
-    cout<<endl;
-    bib1.echangeLivre(bib2, "9780261103344");
-    bib1.supprimerLivre(3);
-    bib1.afficheLivres();
+
     return 0;
 }

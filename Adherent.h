@@ -16,7 +16,7 @@ private:
     static int nextNumAdherent;
     int numAdherent, maxEmprunt, tailleListeEmprunt;
     Bibliotheque* bib;
-    Livre* liste;
+    Livre** liste;
 
 
 public:
@@ -32,7 +32,7 @@ public:
     string get_adresse(); void set_adresse(string adresse);
     int get_maxEmprunt(); void set_maxEmprunt(int maxEmprunt_);
     Bibliotheque* get_bib(); void set_bib(Bibliotheque& bib_);
-    Livre* get_liste(); void set_liste(Livre* liste_);
+    Livre** get_liste(); void set_liste(Livre** liste_);
 };
 
 
