@@ -17,6 +17,7 @@ public:
     Album(string auteur_, string titre_, string editeur_, string ISBN_, Audience audience_, bool dessin_, bool photo_);
 
     Type get_type() override;
+    void affiche() override;
     bool get_dessin(); bool get_photo();
     void set_dessin(bool dessin_); void set_photo(bool photo_);
 };

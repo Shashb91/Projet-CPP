@@ -49,9 +49,14 @@ int main() {
     Livre* l29 = new Roman("Lewis Carroll", "Alice au pays des merveilles", "Macmillan","9781503222687", Livre::Audience::Jeunesse,Roman::Genre::Conte);
     Livre* l30 = new Roman("Herman Melville", "Moby Dick", "Harper & Brothers","9781503280786", Livre::Audience::Adulte,Roman::Genre::Roman_aventure);
 
-    Livre* livres[] = {l1,l2,l3,l4,l5,l6,l7,l8,l9,l10,
-                       l11,l12,l13,l14,l15,l16,l17,l18,l19,l20,
-                       l21,l22,l23,l24,l25,l26,l27,l28,l29,l30};
+    Livre* livres[] = {
+        l14, l3,  l27, l8,  l19,
+        l1,  l22, l11, l30, l6,
+        l18, l25, l4,  l16, l9,
+        l29, l12, l7,  l21, l2,
+        l24, l10, l17, l5,  l28,
+        l13, l26, l20, l15, l23
+    };
 
     for (int i = 0; i < 15; i++) bib1.ajoutLivre(livres[i]);
     for (int i = 15; i < 30; i++) bib2.ajoutLivre(livres[i]);

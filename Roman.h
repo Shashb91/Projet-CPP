@@ -22,6 +22,7 @@ public:
     Roman(string auteur_, string titre_, string editeur_, string ISBN_, Audience audience_,Genre genre);
 
     Type get_type() override;
+    void affiche() override;
     Genre get_genre();string get_genre_string(); void set_genre(Genre genre_);
 
 private:

@@ -10,6 +10,15 @@ Album::Album(string auteur_, string titre_, string editeur_, string ISBN_, Audie
     bool photo_) : Livre(auteur_, titre_, editeur_, ISBN_, audience_){dessin = dessin_; photo = photo_;}
 
 Livre::Type Album::get_type(){return Type::Album;}
+void Album :: affiche(){
+    cout<<"Livre "<< this->get_codeLivre();
+    cout<<" | Titre : "<< this->get_titre();
+    cout<<" | Auteur : "<< this->get_auteur();
+    cout<<" | Genre : " << this->get_type_string();
+    cout<<" | Dessin/Photo : " << this->get_dessin() << "/" << this->get_photo();
+    cout<<" | ISBN : "<< this->get_isbn();
+    cout<<" | Etat : " << this->get_etat_string()<<endl;
+}
 
 bool Album::get_dessin(){return dessin;}
 void Album::set_dessin(bool dessin_){dessin = dessin_;}

@@ -15,6 +15,7 @@ public:
     BD(); BD(string auteur_, string titre_, string editeur_, string ISBN_, Audience audience_, string dessinateur_);
 
     Type get_type() override;
+    void affiche() override;
     string get_dessinateur(); void set_dessinateur(string dessinateur_);
 };
 

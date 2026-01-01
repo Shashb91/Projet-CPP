@@ -10,6 +10,16 @@ Roman::Roman(string auteur_, string titre_, string editeur_, string ISBN_, Audie
     :Livre(auteur_,titre_,editeur_,ISBN_, audience_){genre = genre_;}
 
 Livre::Type Roman::get_type(){return Livre::Type::Roman;}
+
+void Roman::affiche(){
+    cout<<"Livre "<< this->get_codeLivre();
+    cout<<" | Titre : "<< this->get_titre();
+    cout<<" | Auteur : "<< this->get_auteur();
+    cout<<" | Genre : " << this->get_genre_string();
+    cout<<" | ISBN : "<< this->get_isbn();
+    cout<<" | Etat : " << this->get_etat_string()<<endl;
+}
+
 Roman::Genre Roman :: get_genre(){return genre;}
 string Roman::get_genre_string() {
     switch (genre) {

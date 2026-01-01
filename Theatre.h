@@ -17,6 +17,7 @@ public:
     Theatre(string auteur_, string titre_, string editeur_, string ISBN_, Audience audience_, int siecle_);
 
     Type get_type() override;
+    void affiche() override;
     int get_siecle(); void set_siecle(int siecle_);
 };
 
