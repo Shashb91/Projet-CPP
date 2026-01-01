@@ -65,16 +65,21 @@ int main() {
     Adherent a2("Martin", "Claire", "22 rue B", bib2, 2);
     Adherent a3("Durand", "Luc", "5 avenue C", bib1, 4);
 
-    a1.empruntLivre("9782800142304");
-    a1.retourLivre("9782800142304");
-    a3.empruntLivre("9782800142304");
-    a2.empruntLivre("9781503280786");
+    bib1.afficheLivres();
+    cout << endl;
+    bib2.afficheLivres();
 
+    cout << endl; cout << endl;
+    a1.empruntLivre("9782253096337");
+    a1.retourLivre("9782253096337");
+    a3.empruntLivre("9782070413201");
+    a2.empruntLivre("9782012101333");
+    cout << endl; cout << endl;
     cout << "\n===== BIBLIOTHEQUE 1 =====\n";
     bib1.afficheLivres();
     cout << endl; cout << endl;
     cout << "\n===== BIBLIOTHEQUE 2 =====\n";
-    bib2.afficheLivres(Livre :: Type :: Theatre);
+    bib2.afficheLivres(Livre :: Type :: Album);
 
 
 
