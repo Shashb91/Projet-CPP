@@ -62,6 +62,11 @@ void Livre:: affiche(){
     cout<<" | Etat : " << this->get_etat_string()<<endl;
 }
 
+std::ostream& operator<<(std::ostream& os, Livre& l) {
+    l.affiche();
+    return os;
+}
+
 int Livre :: get_codeLivre(){return codeLivre;}
 
 string Livre :: get_auteur(){return auteur;}

@@ -81,9 +81,6 @@ int main() {
     bib1.afficheLivres();
     cout << endl; cout << endl;
     cout << "\n===== BIBLIOTHEQUE 2 =====\n";
-    bib2.afficheLivres(Livre :: Type :: Album);
-
-
-
+    bib2.afficheLivres();
     return 0;
 }

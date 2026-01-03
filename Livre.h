@@ -38,6 +38,7 @@ public:
 
     virtual Type get_type();
     virtual void affiche();
+    friend std::ostream& operator<<(std::ostream& os, Livre& l);
 
     int get_codeLivre();
     string get_auteur(); void set_auteur(string auteur_);

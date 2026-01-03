@@ -24,7 +24,7 @@ public:
     ~Adherent();
 
     void empruntLivre(string ISBN); void retourLivre(string ISBN);
-    void affiche();
+    friend std::ostream& operator<<(std::ostream& os, const Adherent& a);
 
     int get_numAdherent();
     string get_nom(); void set_nom(string nom_);

@@ -57,12 +57,10 @@ void Adherent::empruntLivre(string ISBN) {
     }
 }
 
-
-
 void Adherent::retourLivre(string ISBN){
     try{
-        if (tailleListeEmprunt < 0 ){
-            int ipos;
+        if (tailleListeEmprunt > 0 ){
+            int ipos = 0;
             Livre** listebib = bib->get_liste();
             for (int i = 0; i < tailleListeEmprunt ; i ++){if (listebib[i]->get_isbn() == ISBN){ipos = i;}}
 
@@ -77,15 +75,20 @@ void Adherent::retourLivre(string ISBN){
     catch(int e){cout << e << " : Effectuez un emprunt avant un retour"<<endl;}
 }
 
-void Adherent::affiche(){
-    cout << "Adherent numero : " << nextNumAdherent << endl;
-    cout << "==========================================" << endl;
-    cout << "Nom : " << nom << endl;
-    cout << "Prenom : " << prenom << endl;
-    cout << "Adherent max Emprunt: " << maxEmprunt << endl;
-    cout << "Bibliotheque : " << bib->get_codeBib() << endl;
-    cout << "Liste des livres empruntes : " << endl;
-    for (int i = 0; i < tailleListeEmprunt ; i++){liste[i]->affiche();}
+std::ostream& operator<<(std::ostream& os, const Adherent& a) {
+    os << "Adherent numero : " << Adherent::nextNumAdherent << '\n';
+    os << "==========================================" << '\n';
+    os << "Nom : " << a.nom << '\n';
+    os << "Prenom : " << a.prenom << '\n';
+    os << "Adherent max Emprunt: " << a.maxEmprunt << '\n';
+    os << "Bibliotheque : " << a.bib->get_codeBib() << '\n';
+    os << "Liste des livres empruntes :" << '\n';
+
+    for (int i = 0; i < a.tailleListeEmprunt; ++i) {
+        os << *(a.liste[i]);
+    }
+
+    return os;
 }
 
 int Adherent::get_numAdherent(){ return nextNumAdherent;}
