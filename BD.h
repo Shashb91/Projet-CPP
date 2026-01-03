@@ -1,6 +1,4 @@
-//
-// Created by shash on 31/12/2025.
-//
+//Header de la classe BD
 
 #ifndef PROJET_CPP_BD_H
 #define PROJET_CPP_BD_H

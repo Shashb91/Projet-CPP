@@ -1,6 +1,4 @@
-//
-// Created by shash on 31/12/2025.
-//
+// Code d'Album
 
 #include "Album.h"
 #include "Livre.h"

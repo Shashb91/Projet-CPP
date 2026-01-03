@@ -1,6 +1,4 @@
-//
-// Created by shash on 31/12/2025.
-//
+//Header de la classe roman
 
 #ifndef PROJET_CPP_ROMAN_H
 #define PROJET_CPP_ROMAN_H

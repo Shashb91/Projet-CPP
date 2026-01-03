@@ -1,3 +1,5 @@
+// main du projet
+
 #include <iostream>
 #include "Bibliotheque.h"
 #include "Adherent.h"

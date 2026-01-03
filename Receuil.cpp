@@ -1,6 +1,4 @@
-//
-// Created by shash on 31/12/2025.
-//
+//Code de la classe receuil
 
 #include "Receuil.h"
 #include "Livre.h"
